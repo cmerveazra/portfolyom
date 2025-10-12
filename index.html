@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merve Azra | Portfolyo</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#hakkimda" class="nav-link active">Hakkımda</a></li>
+        <li><a href="#projeler" class="nav-link">Projeler</a></li>
+        <li><a href="#iletisim" class="nav-link">İletişim</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HAKKIMDA PANELİ -->
+    <section id="hakkimda" class="detail-panel panel-hakkimda" data-animate>
+      <div class="profile-img" data-animate>
+        <img src="images/foto5.jpg" alt="Profil resmi">
+      </div>
+      <div class="text" data-animate>
+        <h1>Merhaba, Ben Merve Azra</h1>
+        <p>21 yaşındayım. Kocaeli Üniversitesi Bilgisayar Programcılığı bölümünden bu sene mezun oldum.Eğitimim süresince yazılım geliştirme alanına yoğunlaştım ve özellikle web teknolojileri üzerinde kendimi geliştirdim. 
+        HTML, CSS, PHP, Python, JavaScript, C# ve veri tabanı yönetimi konularında orta seviye bilgi ve deneyime sahibim.
+        Kendimi sürekli geliştirmeye, yeni teknolojiler öğrenmeye ve öğrendiklerimi uygulamaya büyük önem veriyorum. 
+        Bu portfolyoda yaptığım projeleri, hobilerimi ve iletişim bilgilerimi bulabilirsiniz.  
+        </p>
+      </div>
+    </section>
+
+   <section id="projeler" class="panel-projeler">
+        
+        <div class="projects-header">
+            <h2>Projelerim</h2>
+            <p>Aşağıdaki projeler üzerinde çalıştım. Arama kutusunu kullanarak istediğiniz projeyi hızlıca bulabilirsiniz.</p>
+            <input type="text" id="projectSearch" placeholder="Projelerde ara..." class="project-search">
+        </div>
+        <div class="project-gallery">
+            <div class="project-item" data-title="Aidat Takip">
+                <img src="images/minikadımlar.png" alt="Aidat Takip">
+                <h3>Aidat Takip</h3>
+                <p>ASP.NET MVC & MySQL tabanlı web uygulaması</p>
+                <a href="okulaidat.html" class="read-more-button">Devamını Oku</a>
+            </div>
+
+            <div class="project-item" data-title="Yediemin Otopark">
+                <img src="images/mrv.png" alt="Yediemin Takip">
+                <h3>Yediemin Otopark</h3>
+                <p>PHP & phpMyAdmin tabanlı yönetim paneli</p>
+                <a href="projeyediemin.html" class="read-more-button">Devamını Oku</a>
+            </div>
+
+            <div class="project-item" data-title="To Do List">
+                <img src="images/arayüz.webp" alt="To Do List">
+                <h3>To Do List</h3>
+                <p>JavaScript ve HTML ile geliştirilmiş web uygulaması</p>
+                <a href="todolist.html" class="read-more-button">Devamını Oku</a>
+            </div>
+        </div>
+        </section>
+
+    <!-- İLETİŞİM PANELİ -->
+    <section id="iletisim" class="detail-panel panel-iletisim" data-animate>
+      <div class="text">
+        <h2>İletişim</h2>
+        <p>Bilgilerinizi doldurarak benimle iletişime geçebilirsiniz.</p>
+
+        <form id="contactForm" data-animate>
+          <label for="name">Ad</label>
+          <input id="name" name="name" type="text" required placeholder="Adınız">
+
+          <label for="phone">Telefon</label>
+          <input id="phone" name="phone" type="tel" required placeholder="Telefon">
+
+          <label for="email">E-posta</label>
+          <input id="email" name="email" type="email" required placeholder="E-posta">
+
+          <label for="message">Mesajınız</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Mesajınız"></textarea>
+
+          <button type="submit" class="read-more-button">Gönder</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Merve Azra</p>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/merve-azra-%C3%A7-919045320" target="_blank" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/cmerveazra" target="_blank" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+
+    </div>
+  </footer>
+
+  <!-- SMOOTH SCROLL, FİLTRE VE ANİMASYON -->
+  <script>
+    // Smooth Scroll
+    document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      const yOffset = -80; // navbar yüksekliği kadar boşluk
+      const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
+
+
+    // Proje Arama
+    const searchInput = document.getElementById('projectSearch');
+    const projects = document.querySelectorAll('.project-item');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        const filter = searchInput.value.toLowerCase();
+        projects.forEach(project => {
+          const title = project.getAttribute('data-title').toLowerCase();
+          project.style.display = title.includes(filter) ? 'block' : 'none';
+        });
+      });
+    }
+
+    // Form işlemi
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        alert("Mesajınız başarıyla gönderildi!");
+        contactForm.reset();
+      });
+    }
+// Scroll'da animasyon (fade-in ve buğulanma) için IntersectionObserver
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+
+
+// Hakkımda alanı sayfa yüklendiğinde animasyonla gelsin
+window.addEventListener('DOMContentLoaded', () => {
+  const hakkimdaEl = document.getElementById('hakkimda');
+  hakkimdaEl.classList.add('show');
+  hakkimdaEl.querySelectorAll('[data-animate]').forEach(el => {
+    el.classList.add('show');
+  });
+});
+
+
+const projelerSection = document.getElementById('projeler');
+
+// Scroll ile görünür olduğunda blur kalksın
+const projelerObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      projelerSection.classList.add('show');
+      projelerObserver.unobserve(projelerSection);
+    }
+  });
+}, { threshold: 0.3 });
+
+projelerObserver.observe(projelerSection);
+
+// Navbar’dan "Projeler" tıklanırsa blur hemen kalksın
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    if (link.getAttribute('href') === '#projeler') {
+      projelerSection.classList.add('show');
+    }
+  });
+});
+
+// İletişim alanını ve içindeki elemanları izle
+const iletisimPanel = document.getElementById('iletisim');
+if (iletisimPanel) {
+    observer.observe(iletisimPanel); 
+    document.querySelectorAll('#iletisim [data-animate]').forEach(el => observer.observe(el)); 
+}
+  </script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const projeler = document.querySelector(".panel-projeler");
+  setTimeout(() => projeler.classList.add("show"), 800);
+});
+</script>
+
+
+</body>
+</html>
