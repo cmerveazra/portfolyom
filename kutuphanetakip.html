@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yediemin Otopark Takip Sistemi</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== SAYFA ÖZEL STİLLER ===== */
+    body.no-blur .panel-projeler,
+    body.no-blur .detail-panel,
+    body.no-blur [data-animate] {
+      opacity: 1 !important;
+      filter: blur(0) !important;
+      transform: translateY(0) !important;
+      transition: none !important;
+    }
+
+    /* === PANEL PROJELER (Yazı-Sol, Foto-Sağ) === */
+    .panel-projeler {
+      display: flex;
+      flex-direction: row;
+      gap: 3rem;
+      align-items: flex-start;
+      background-color: #efeae3;
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      width: calc(100% - 40px);
+    }
+
+    .panel-projeler .text-content {
+      flex: 1;
+    }
+
+    .panel-projeler .text-content h1 {
+      margin-bottom: 1rem;
+      color: #2b2b2b;
+    }
+
+    .panel-projeler .text-content p,
+    .panel-projeler .text-content ul {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .panel-projeler .text-content ul {
+      margin: 1rem 0;
+      padding-left: 1.2rem;
+    }
+
+    .panel-projeler .text-content .read-more-button {
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+  /* === GÖRSELLER (Sağ) === */
+.panel-projeler .images-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 220px sabit başlangıç */
+  gap: 1.5rem;
+  justify-items: center;
+  margin-top: 6rem;
+}
+
+.panel-projeler .images-content img {
+  width: 220px; /* masaüstünde sabit */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.panel-projeler .images-content img:hover {
+  transform: scale(1.05);
+}
+
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .panel-projeler {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .panel-projeler .images-content {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        width: 100%;
+      }
+
+      .panel-projeler .text-content .read-more-button {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="no-blur">
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Anasayfa</a></li>
+        <li><a href="#projeler" class="active">Projeler</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PROJE DETAY -->
+  <main>
+    <section class="detail-panel panel-projeler">
+      <div class="text-content">
+        <h1>KütüphaneTakip Sistemi</h1>
+        <p>
+          Bu proje, <strong>C#</strong> ve <strong>SQL</strong> kullanılarak geliştirilen bir <strong>Windows Form uygulamasıdır</strong>.
+          Amaç, kütüphanelerdeki kitap takibi ve ödünç alma işlemleri gibi işlevleri yönetmektir.
+        </p>
+        <p>
+          Sistem, kayıtlı olan kitapları listeleme, yeni kitap ekleme ve ödünç-iade işlemlerini gerçekleştirebilecek şekilde tasarlanmışıtr.
+          Veritabanı tarafında <em>SQL Server</em> kullanılmıştır.
+        </p>
+
+        <ul>
+          <li>🔹 Yeni kitap kayıt işlemleri</li>
+          <li>🔹 Kayıtlı kitaplar</li>
+          <li>🔹 Ödünç ve iade işlemleri</li>
+        </ul>
+
+        <p><strong>Kullanılan Teknolojiler:</strong> C#, SQL Server</p>
+        <a href="index.html#projeler" class="read-more-button">← Geri Dön</a>
+      </div>
+
+      <div class="images-content">
+        <img src="images/kutup1.png" alt="Kütüphane paneli">
+        <img src="images/kutup2.png" alt="Ödünç Alma">
+        <img src="images/kutup3.png" alt="Yeni Kitap Ekleme">
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="Büyük Görsel">
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 Merve Azra</p>
+  </footer>
+
+  <!-- JS LIGHTBOX -->
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.querySelector(".lightbox-img");
+    const closeBtn = document.querySelector(".lightbox .close");
+    const galleryImages = document.querySelectorAll(".images-content img");
+
+    galleryImages.forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) lightbox.style.display = "none";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") lightbox.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
